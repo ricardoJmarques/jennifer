@@ -25,19 +25,10 @@ void readCmd(char *buffer){
   return;
 }
 
-char *OKOKcmd(int id){ //HELO ok response
+char *HELOcmd(char *pipe, char *pseudo){
   char buffer[4096]={0};
   char *cmd=NULL;
-  sprintf(buffer, "OKOK%04d",id);
-  cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
-  sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
-  return cmd;
-}
-
-char *BADDcmd(){ //HELo nok response
-  char buffer[4096]={0};
-  char *cmd=NULL;
-  sprintf(buffer, "BADD");
+  sprintf(buffer, "HELO%04d%s%04d%s",(int)strlen(pseudo),pseudo,(int)strlen(pipe),pipe);
   cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
   sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
   return cmd;
@@ -52,10 +43,10 @@ char *BYEEcmd(int id){
   return cmd;
 }
 
-char *BCSTcmd(int id, char *pseudo, char *msg){
+char *BCSTcmd(int id, char *msg){
   char buffer[4096]={0};
   char *cmd=NULL;
-  sprintf(buffer, "BCST%04d%04d%s%04d%s",id,(int)strlen(pseudo),pseudo,(int)strlen(msg),msg);
+  sprintf(buffer, "BCST%04d%04d%s",id,(int)strlen(msg),msg);
   cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
   sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
   return cmd;
@@ -64,16 +55,16 @@ char *BCSTcmd(int id, char *pseudo, char *msg){
 char *PRVTcmd(int id, char *pseudo, char *msg){
   char buffer[4096]={0};
   char *cmd=NULL;
-  sprintf(buffer, "PRVT%04d%04d%s%04d%s",id,(int)strlen(pseudo),pseudo,(int)strlen(msg),msg);
+  sprintf(buffer, "PRVT%04d%s%04d%s",id, pseudo,(int)strlen(msg),msg);
   cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
   sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
   return cmd;
 }
 
-char *LISTcmd(int n, char *pseudo){
+char *LISTcmd(int id){
   char buffer[4096]={0};
   char *cmd=NULL;
-  sprintf(buffer, "LIST%04d%04d%s",n,(int)strlen(pseudo),pseudo);
+  sprintf(buffer, "LIST%04d",id);
   cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
   sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
   return cmd;
@@ -87,3 +78,13 @@ char *SHUTcmd(int id){
   sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
   return cmd;
 }
+
+char *DEBGcmd(){
+  char buffer[4096]={0};
+  char *cmd=NULL;
+  sprintf(buffer, "DEBG");
+  cmd = (char*)malloc(sizeof(char)*(strlen(buffer)+4));
+  sprintf(cmd, "%04d%s", (int)strlen(buffer),buffer);
+  return cmd;
+}
+

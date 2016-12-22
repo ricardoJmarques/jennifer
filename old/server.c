@@ -5,13 +5,11 @@
 #include <unistd.h> //needed for read() & write()
 #include <stdio.h>  //needed for printf() scanf()
 
-#include "server_cmd.h"
-
 #define serverFIFOPATH "/tmp/sobusrv" /*Named Pipe for server listening*/
 #define tamCMD 4096
 
 int main(){	
-  int fd, loopT, i, readSize;
+  int fd, loopT, i;
   char buffer[tamCMD];
   //cmdSessao cmd;
   loopT = 1;
@@ -26,8 +24,9 @@ int main(){
   
   while(loopT){
     fd = open(serverFIFOPATH, O_RDONLY);
-    while ((readSize=read(fd, buffer, tamCMD)) > 0) {
-      readCmd(buffer);
+    while (read(fd, buffer, tamCMD) > 0) {
+      
+      //lePedido(buffer, &cmd);
     }
     for (i=0; i<tamCMD; i++) buffer[i] = '\0'; /*clear buffer*/
     close(fd);

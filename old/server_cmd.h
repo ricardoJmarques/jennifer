@@ -1,8 +1,5 @@
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
-
-void readCmd(char *buffer);
 
 char *OKOKcmd(int id); //HELO ok response
 

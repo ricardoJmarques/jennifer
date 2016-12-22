@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 void readCmd(char *buffer){
   int size=0;

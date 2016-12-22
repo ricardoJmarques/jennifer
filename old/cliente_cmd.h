@@ -4,16 +4,16 @@
 
 void readCmd(char *buffer);
 
-char *OKOKcmd(int id); //HELO ok response
-
-char *BADDcmd(); //HELO nok response
+char *HELOcmd(char *pipe, char *pseudo);
 
 char *BYEEcmd(int id);
 
-char *BCSTcmd(int id, char *pseudo, char *msg);
+char *BCSTcmd(int id, char *msg);
 
 char *PRVTcmd(int id, char *pseudo, char *msg);
 
-char *LISTcmd(int n, char *pseudo);
+char *LISTcmd(int id);
 
 char *SHUTcmd(int id);
+
+char *DEBGcmd();
