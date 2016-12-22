@@ -1,4 +1,9 @@
-# jennifer Projet
+# jennifer Project
+
+<h1>Jennifer Project
+
+Is a simple chat server/client in C language.
+It's goal is to be totaly encripted using algorithms such as RSA & AES.
 
 To compile client:
 
